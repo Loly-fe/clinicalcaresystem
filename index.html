@@ -6,15 +6,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<style>
+    body {
+        display: grid;
+        background-color: antiquewhite;
+        text-align: center;
+        justify-items: center;
+    }
+    .login {
+        background-color: white;
+        text-align: center;
+        margin-top: 150px;
+        width: 50%;
+    }
+    .login > h1 {
+        background-color: cornflowerblue;
+    }
+    .loginbar {
+        background-color: lightblue;
+        width: 100px;
+        min-height: 40px;
+        margin-bottom: 50px;
+        text-align: center;
+    }
+</style>
 <body>
-    <div style="align-content: center; padding: 10px; background-color: antiquewhite; width: 200px; height: 150px">
-        <form style="align-self: center" action="">
-            <label style="margin: 5px" for="username">User Name</label>
-            <input type="text"><br><br>
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password"><br><br>
-            <button><a href="patient.html">Submit</a></button>
+    <div class="login">
+        <h1>Log-In</h1>
+        <hr><br>
+        <form  name="logform" method="get" action="formprocess.html" onsubmit="return validateForm()">
+            <input name="username" type="text" required><br>
+            <label for="">Username</label><br><br>
+            <input name="password" type="password" required><br>
+            <label for="">password</label><br><br>
+            <button type="submit" name="submit" class="loginbar"><strong>Log-in</strong></button>
         </form>
     </div>
+
+    <script> 
+        function validateForm() {
+            let logForm =  document.forms["logform"];
+            let userName = logForm["username"].value.trim();   
+            let password = logForm["password"].value.trim();     
+            
+            if (!userName) {
+                alert('Please provide username');
+                logForm['username'].focus();
+                return false;
+            }
+            if (userName.length<6 ) {
+                alert('Please provide minimum of 6 characters');
+                logForm['username'].focus();
+                return false;
+            }
+            if (!password) {
+                alert('Please provide correct password');
+                logForm['password'].focus();
+                return false;
+            }
+            if (password.length<6 ) {
+                alert('Please provide minimum of 6 characters');
+                logForm['password'].focus();
+                return false;
+            }
+            else  {
+                alert("login successful " + userName);
+                return true;
+            }
+        }
+
+
+    </script>
+    
 </body>
 </html>
